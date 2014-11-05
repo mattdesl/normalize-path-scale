@@ -1,6 +1,6 @@
 {
   "name": "normalize-path-scale",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "normalizes a 2d path to its bounding box",
   "main": "index.js",
   "license": "MIT",
