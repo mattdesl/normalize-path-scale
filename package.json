@@ -1,0 +1,43 @@
+{
+  "name": "normalize-path-scale",
+  "version": "1.0.0",
+  "description": "normalizes a 2d path to its bounding box",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "getboundingbox": "^1.0.0",
+    "unlerp": "^1.0.1",
+    "vec2-copy": "^1.0.0"
+  },
+  "devDependencies": {
+    "tape": "^3.0.1"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "normalize",
+    "get",
+    "bounding",
+    "box",
+    "bounds",
+    "bounded",
+    "norm",
+    "normal",
+    "unit",
+    "scale"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/normalize-path-scale.git"
+  },
+  "homepage": "https://github.com/mattdesl/normalize-path-scale",
+  "bugs": {
+    "url": "https://github.com/mattdesl/normalize-path-scale/issues"
+  }
+}
