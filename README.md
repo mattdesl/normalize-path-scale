@@ -28,9 +28,11 @@ points = normalize(points)
 
 [![NPM](https://nodei.co/npm/normalize-path-scale.png)](https://nodei.co/npm/normalize-path-scale/)
 
-### normalize(path)
+### normalize(path[, bounds])
 
 Produces a new path (with new points) from the original 2D path, but scaled based on its bounding box so that all points are within the range of -1.0 to 1.0. This also maintains the original aspect ratio of the path. 
+
+You can specify `bounds` for a custom bounding box which has the following members: `{ minX, minY, maxX, maxY }` -- if no `bounds` is specified, it will be computed with [getboundingbox](https://nodei.co/npm/getboundingbox/).
 
 ```js
 var path = normalize([ [20,20], [10,10], [40,-50] ])
