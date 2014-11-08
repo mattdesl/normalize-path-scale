@@ -11,13 +11,16 @@ module.exports = function normalize(path, box) {
     //TODO: hmm, doesn't really handle div by zero
     //in any sane manner
 
-    var d = (b.maxY-b.minY)
-    var aspect = d===0 ? 1 : (b.maxX-b.minX)/d
+    var w = (b.maxX-b.minX),
+        h = (b.maxY-b.minY)
+
+    var aspectX = w>h ? 1 : h/w,
+        aspectY = w>h ? w/h : 1
 
     return path.map(function(p) {
         return [
-            range(b.minX, b.maxX, p[0]),
-            range(b.minY, b.maxY, p[1])*1/aspect
+            range(b.minX, b.maxX, p[0])*1/aspectX,
+            range(b.minY, b.maxY, p[1])*1/aspectY
         ]
     })
 }
