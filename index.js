@@ -1,8 +1,12 @@
 var bounds = require('getboundingbox')
 var unlerp = require('unlerp')
 
-module.exports = function normalize(path) {
-    var b = bounds(path)
+module.exports = function normalize(path, box) {
+    var b
+    if (box && typeof box === 'object') {
+        b = box
+    } else
+        b = bounds(path)
 
     //TODO: hmm, doesn't really handle div by zero
     //in any sane manner

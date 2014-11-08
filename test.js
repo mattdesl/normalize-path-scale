@@ -13,5 +13,6 @@ test("normalizes a 2d path to its bounding box", function(t) {
         [10, 10], [20, 20], [0, 10]
     ]
     t.deepEqual(normalize(aspect), [ [ 0, -0.5 ], [ 1, 0.5 ], [ -1, -0.5 ] ])
+    t.notDeepEqual(normalize(aspect, { minX: 0, maxX: 0, minY: 1, maxY: 1 }), [ [ 0, -0.5 ], [ 1, 0.5 ], [ -1, -0.5 ] ], 'user specified bounding box')
     t.end() 
 })
