@@ -2,23 +2,15 @@
 
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
-Normalizes a 2D path to its bounding box. This is useful to take a series of paths (e.g. SVG) and normalize them all into the `-1.0 .. 1.0` range, for easier rendering. It also makes it more suitable for rendering SVG paths in 3D space with WebGL.
+Normalizes a 2D path to its bounding box, producing positions that are in the `-1.0 ... 1.0` range with correct aspect ratio. For example; to render arbitrary SVG paths in 3D, centred in world units.
 
-Also corrects aspect ratio.
+This does not produce a copy of the path, but instead mutates it in place.
 
 ```js
-var discretize = require('discretize-svg-path')
-var parse = require('parse-svg-path')
-var normalize = require('normalize-path-scale')
+var path = [ [x1, y1], [x2, y2], ... ]
 
-//parse into usable array
-var path = parse(svgContents)
-
-//approximate into discrete points
-var points = discretize(path)
-
-//normalize to -1.0 .. 1.0
-points = normalize(points)
+//normalize path to -1.0 .. 1.0
+normalize(path)
 
 //render with webgl / canvas / etc
 //...
@@ -30,13 +22,24 @@ points = normalize(points)
 
 ### normalize(path[, bounds])
 
-Produces a new path (with new points) from the original 2D path, but scaled based on its bounding box so that all points are within the range of -1.0 to 1.0. This also maintains the original aspect ratio of the path. 
+Normalizes the 2D `path` in place, scaling the points to `-1.0 .. 1.0` range. Maintains aspect ratio of the path. 
 
-You can specify `bounds` for a custom bounding box which has the following members: `{ minX, minY, maxX, maxY }` -- if no `bounds` is specified, it will be computed with [getboundingbox](https://nodei.co/npm/getboundingbox/).
+You can specify `bounds` for a custom bounding box:
 
 ```js
-var path = normalize([ [20,20], [10,10], [40,-50] ])
+[ [minX, minY], [maxX, maxY] ]
 ```
+
+Otherwise calculates the bounding box with [bound-points](https://github.com/mikolalysenko/bound-points).
+
+Returns the specified `path`.
+
+If the width or height of the bounding box is zero, this function returns early.
+
+## Changes
+
+- `2.0` changes the array in place, uses `bound-points`, returns early on zero size
+- `1.0` a simple version that does not mutate the input
 
 ## License
 
